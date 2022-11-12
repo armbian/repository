@@ -76,7 +76,7 @@ jobs:
           PROJECT=$(echo ${{ matrix.node }} | cut -d":" -f1)
           RELEASE=$(echo ${{ matrix.node }} | cut -d":" -f2)
           URL=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f2)
-          KEY=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f4)
+          KEY=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f3)
           TARGET=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f5)
           METHOD=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f6)
 
