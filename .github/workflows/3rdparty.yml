@@ -28,7 +28,6 @@ jobs:
               echo "$rec_column1:$rec_column4"
           done < <(tail -n +2 projects.csv)
           )
-          #echo ::set-output name=matrix::$(for x in $(echo "${MATRIX}"); do echo $x; done|jq -cnR '[inputs | select(length>0)]' | jq)          
           echo "matrix=$(for x in $(echo "${MATRIX}"); do echo $x; done|jq -cnR '[inputs | select(length>0)]' | jq -c)" >> $GITHUB_OUTPUT
 
   download:
