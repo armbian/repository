@@ -97,7 +97,10 @@ jobs:
               fi
           else
 
-              aptly mirror create ${PROJECT}-${RELEASE} ${URL} ${KEY} main
+              COMPONENT="main"
+              [[ $KEY == "./" ]] && COMPONENT=""
+
+              aptly mirror create ${PROJECT}-${RELEASE} ${URL} ${KEY} ${COMPONENT}
               aptly mirror update ${PROJECT}-${RELEASE} 
               aptly snapshot create ${PROJECT}-${RELEASE} from mirror ${PROJECT}-${RELEASE}
               # publish
