@@ -75,9 +75,10 @@ jobs:
 
           PROJECT=$(echo ${{ matrix.node }} | cut -d":" -f1)
           RELEASE=$(echo ${{ matrix.node }} | cut -d":" -f2)
-          URL=$(grep "$PROJECT,[^,]\+,$RELEASE," projects.csv | cut -d"," -f2)
-          TARGET=$(grep "$PROJECT,[^,]\+,$RELEASE," projects.csv | cut -d"," -f4)
-          METHOD=$(grep "$PROJECT,[^,]\+,$RELEASE," projects.csv | cut -d"," -f5)
+          URL=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f2)
+          KEY=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f4)
+          TARGET=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f5)
+          METHOD=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f6)
 
           # recreate folder structure as we are uploading to our system
           mkdir -p output/debs/$RELEASE
@@ -93,7 +94,7 @@ jobs:
               fi
           else
 
-              aptly mirror create ${PROJECT}-${RELEASE} ${URL} ${RELEASE} main
+              aptly mirror create ${PROJECT}-${RELEASE} ${URL} ${KEY} main
               aptly mirror update ${PROJECT}-${RELEASE} 
               aptly snapshot create ${PROJECT}-${RELEASE} from mirror ${PROJECT}-${RELEASE}
               # publish
