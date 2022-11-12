@@ -94,12 +94,13 @@ jobs:
                    mv *.deb output/debs/extra/${RELEASE}-${TARGET}/
               fi
           else
+
               aptly mirror create ${PROJECT}-${RELEASE} ${URL} ${RELEASE} main
-              mkdir -p ${HOME}/output/debs/extra/${{ matrix.target }}-utils
-              aptly mirror update ${{ matrix.project }}-${{ matrix.target }}
-              aptly snapshot create ${{ matrix.project }}-${{ matrix.target }} from mirror ${{ matrix.project }}-${{ matrix.target }}
-              aptly publish -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${{ matrix.project }}-${{ matrix.target }}
-              find /home/runner/.aptly/public/ -type f -exec cp {} ${HOME}/output/debs/extra/${{ matrix.target }}-utils \;
+              aptly mirror update ${PROJECT}-${RELEASE} 
+              aptly snapshot create ${PROJECT}-${RELEASE} from mirror ${PROJECT}-${RELEASE}
+              # publish
+              aptly publish -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${PROJECT}-${RELEASE}
+              find /home/runner/.aptly/public/ -type f -exec cp {} output/debs/extra/${RELEASE}-${TARGET} \;
           fi
 
       - name: Deploy to server
