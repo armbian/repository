@@ -1,6 +1,6 @@
 Project,URL,Component,Release,Repository key,Method,Search parameter
-box86,http://ryanfortner.github.io/box64-debs/debian,,focal,utils,aptly,
-box64,https://itai-nelken.github.io/weekly-box86-debs/debian/,,jammy,utils,aptly,
+box86,http://ryanfortner.github.io/box64-debs/debian,./,focal,utils,aptly,
+box64,https://itai-nelken.github.io/weekly-box86-debs/debian/,./,jammy,utils,aptly,
 zfs,http://ppa.launchpad.net/jonathonf/zfs/ubuntu,focal,focal,utils,aptly,
 zfs,http://ppa.launchpad.net/jonathonf/zfs/ubuntu,jammy,jammy,utils,aptly,
 nala,http://deb.volian.org/volian scar,main,focal,utils,aptly,nala_
