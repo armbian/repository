@@ -89,9 +89,11 @@ jobs:
           if [[ ${METHOD} == gh ]]; then
               gh release download -p '*.deb' --repo ${URL}
               if [[ ${TARGET} == main ]]; then                            
-                   mv *.deb output/debs/${RELEASE}/
+                   #mv *.deb output/debs/${RELEASE}/
+                   find . -type f -name "*$GLOB*.deb" -exec mv {} output/debs/${RELEASE} \;
               else
-                   mv *.deb output/debs/extra/${RELEASE}-${TARGET}/
+                   #mv *.deb output/debs/extra/${RELEASE}-${TARGET}/
+                   find . -type f -name "*$GLOB*.deb" -exec mc {} output/debs/extra/${RELEASE}-${TARGET} \;
               fi
           else
 
@@ -100,7 +102,7 @@ jobs:
               aptly snapshot create ${PROJECT}-${RELEASE} from mirror ${PROJECT}-${RELEASE}
               # publish
               aptly publish -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${PROJECT}-${RELEASE}
-              find /home/runner/.aptly/public/ -type f -name "*$GLOB*.deb" -exec cp {} output/debs/extra/${RELEASE}-${TARGET} \;
+              find /home/runner/.aptly/public/ -type f -name "*$GLOB*.deb" -exec mv {} output/debs/extra/${RELEASE}-${TARGET} \;
 
           fi
 
