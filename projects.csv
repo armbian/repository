@@ -2,7 +2,7 @@ Project,URL,Release,Repository key,Method
 zfs,http://ppa.launchpad.net/jonathonf/zfs/ubuntu,focal,utils,aptly
 zfs,http://ppa.launchpad.net/jonathonf/zfs/ubuntu,jammy,utils,aptly
 nala,http://deb.volian.org/volian scar,main,utils,aptly
-nala,http://deb.volian.org/volian scar,bullseye,utils,aptly
+nala,http://deb.volian.org/volian scar main,bullseye,utils,aptly
 nala,http://deb.volian.org/volian scar,kinetic,utils,aptly
 aptly,https://github.com/aptly-dev/aptly,jammy,utils,gh
 aptly,https://github.com/aptly-dev/aptly,kinetic,utils,gh
