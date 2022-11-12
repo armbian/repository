@@ -25,7 +25,7 @@ jobs:
           MATRIX=$(
           while IFS="," read -r rec_column1 rec_column2 rec_column3 rec_column4
           do
-              echo "$rec_column1:$rec_column3"
+              echo "$rec_column1:$rec_column4"
           done < <(tail -n +2 projects.csv)
           )
           echo ::set-output name=matrix::$(for x in $(echo "${MATRIX}"); do echo $x; done|jq -cnR '[inputs | select(length>0)]' | jq)
@@ -72,8 +72,6 @@ jobs:
 
       - name: Download
         run: |
-
-          
 
           PROJECT=$(echo ${{ matrix.node }} | cut -d":" -f1)
           RELEASE=$(echo ${{ matrix.node }} | cut -d":" -f2)
