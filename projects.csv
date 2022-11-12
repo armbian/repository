@@ -4,5 +4,5 @@ zfs,http://ppa.launchpad.net/jonathonf/zfs/ubuntu,jammy,jammy,utils,aptly,
 nala,http://deb.volian.org/volian scar,main,focal,utils,aptly,nala_
 nala,http://deb.volian.org/volian scar,main,bullseye,utils,aptly,nala_
 nala,http://deb.volian.org/volian scar,main,kinetic,utils,aptly,nala_
-aptly,https://github.com/aptly-dev/aptly,jammy,jammy,utils,gh,
-aptly,https://github.com/aptly-dev/aptly,kinetic,kinetic,utils,gh,
+aptly,https://github.com/aptly-dev/aptly,jammy,jammy,utils,gh,amd64
+aptly,https://github.com/aptly-dev/aptly,kinetic,kinetic,utils,gh,amd64
