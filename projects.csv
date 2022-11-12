@@ -1,4 +1,4 @@
-Project,URL,Component,Release,Repository key,Method,
+Project,URL,Component,Release,Repository key,Method,Search parameter
 zfs,http://ppa.launchpad.net/jonathonf/zfs/ubuntu,focal,focal,utils,aptly,
 zfs,http://ppa.launchpad.net/jonathonf/zfs/ubuntu,jammy,jammy,utils,aptly,
 nala,http://deb.volian.org/volian scar,main,focal,utils,aptly,nala_
