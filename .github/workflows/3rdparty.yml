@@ -99,17 +99,16 @@ jobs:
               aptly mirror update ${PROJECT}-${RELEASE} 
               aptly snapshot create ${PROJECT}-${RELEASE} from mirror ${PROJECT}-${RELEASE}
               # publish
-              aptly publish -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${PROJECT}-${RELEASE}
-              find /home/runner/.aptly/public/ -type f -exec cp {} output/debs/extra/${RELEASE}-${TARGET} \;
+              #aptly publish -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${PROJECT}-${RELEASE}
+              #find /home/runner/.aptly/public/ -type f -exec cp {} output/debs/extra/${RELEASE}-${TARGET} \;
+              find /home/runner/.aptly/ -type f -exec cp {} output/debs/extra/${RELEASE}-${TARGET} \;
           fi
 
       - name: Deploy to server
         run: |
 
           sudo apt-get -y -qq install lftp
-          if [[ -d /home/runner/.aptly/public/ ]]; then
-          lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms ${HOME}/output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
-          fi
+          lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
 
   stop:
 
