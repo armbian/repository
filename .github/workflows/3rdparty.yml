@@ -1,0 +1,120 @@
+name: Sync 3rd party packages
+
+on:
+  workflow_dispatch:
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+
+  start:
+    runs-on: ubuntu-latest
+    name: "Start"
+    outputs:
+      matrix: ${{steps.lists.outputs.matrix}}
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3.1.0
+  
+      - name: Build list
+        id: lists
+        run: |
+
+          MATRIX=$(
+          while IFS="," read -r rec_column1 rec_column2 rec_column3 rec_column4
+          do
+              echo "$rec_column1:$rec_column3"
+          done < <(tail -n +2 projects.csv)
+          )
+          echo ::set-output name=matrix::$(for x in $(echo "${MATRIX}"); do echo $x; done|jq -cnR '[inputs | select(length>0)]' | jq)
+
+  download:
+    needs: [start]
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ${{fromJson(needs.start.outputs.matrix)}}
+    
+    name: "Mirroring"
+    runs-on: [Ubuntu-latest]
+    steps:
+
+#      - name: Install SSH key for storage
+#        uses: shimataro/ssh-key-action@v2
+#        with:
+#          key: ${{ secrets.KEY_TORRENTS }}
+#          known_hosts: ${{ secrets.KNOWN_HOSTS_UPLOAD }}
+#          if_key_exists: replace
+
+#      - name: Import GPG key
+
+#        uses: crazy-max/ghaction-import-gpg@v5
+#        with:
+#          gpg_private_key: ${{ secrets.GPG_KEY1 }}
+#          passphrase: ${{ secrets.GPG_PASSPHRASE1 }}
+
+      - name: Checkout
+        uses: actions/checkout@v3.1.0
+
+      - name: Install Aptly
+        run: |
+
+          wget https://github.com/aptly-dev/aptly/releases/download/v1.5.0/aptly_1.5.0_amd64.deb
+          sudo dpkg -i aptly_1.5.0_amd64.deb
+          sudo rm aptly_1.5.0_amd64.deb
+
+      - name: Install keys
+        run: |
+        
+          find keys/ -type f -name "*.gpg" -exec gpg --import --no-default-keyring --keyring trustedkeys.gpg "{}" \;
+
+      - name: Download
+        run: |
+
+          
+
+          PROJECT=$(echo ${{ matrix.node }} | cut -d":" -f1)
+          RELEASE=$(echo ${{ matrix.node }} | cut -d":" -f2)
+          URL=$(grep "$PROJECT,[^,]\+,$RELEASE," projects.csv | cut -d"," -f2)
+          TARGET=$(grep "$PROJECT,[^,]\+,$RELEASE," projects.csv | cut -d"," -f4)
+          METHOD=$(grep "$PROJECT,[^,]\+,$RELEASE," projects.csv | cut -d"," -f5)
+
+          # recreate folder structure as we are uploading to our system
+          mkdir -p output/debs/$RELEASE
+          mkdir -p output/debs/extra/$RELEASE-utils
+          mkdir -p output/debs/extra/$RELEASE-desktop
+
+          if [[ ${METHOD} == gh ]]; then
+              gh release download -p '*.deb' --repo ${URL}
+              if [[ ${TARGET} == main ]]; then                            
+                   mv *.deb output/debs/${RELEASE}/
+              else
+                   mv *.deb output/debs/extra/${RELEASE}-${TARGET}/
+              fi
+          else
+              aptly mirror create ${PROJECT}-${RELEASE} ${URL} ${RELEASE} main
+              mkdir -p ${HOME}/output/debs/extra/${{ matrix.target }}-utils
+              aptly mirror update ${{ matrix.project }}-${{ matrix.target }}
+              aptly snapshot create ${{ matrix.project }}-${{ matrix.target }} from mirror ${{ matrix.project }}-${{ matrix.target }}
+              aptly publish -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${{ matrix.project }}-${{ matrix.target }}
+              find /home/runner/.aptly/public/ -type f -exec cp {} ${HOME}/output/debs/extra/${{ matrix.target }}-utils \;
+          fi
+
+      - name: Deploy to server
+        run: |
+
+          sudo apt-get -y -qq install lftp
+          #if [[ -d /home/runner/.aptly/public/ ]]; then
+          #lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms ${HOME}/output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
+          #fi
+
+  stop:
+
+    name: Stop
+    needs: [start,download]
+    runs-on: [ubuntu-latest]
+    steps:
+      - run: |
+          echo "Start"
