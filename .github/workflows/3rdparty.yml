@@ -41,19 +41,19 @@ jobs:
     runs-on: [Ubuntu-latest]
     steps:
 
-#      - name: Install SSH key for storage
-#        uses: shimataro/ssh-key-action@v2
-#        with:
-#          key: ${{ secrets.KEY_TORRENTS }}
-#          known_hosts: ${{ secrets.KNOWN_HOSTS_UPLOAD }}
-#          if_key_exists: replace
+      - name: Install SSH key for storage
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.KEY_TORRENTS }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS_UPLOAD }}
+          if_key_exists: replace
 
-#      - name: Import GPG key
+      - name: Import GPG key
 
-#        uses: crazy-max/ghaction-import-gpg@v5
-#        with:
-#          gpg_private_key: ${{ secrets.GPG_KEY1 }}
-#          passphrase: ${{ secrets.GPG_PASSPHRASE1 }}
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_KEY1 }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE1 }}
 
       - name: Checkout
         uses: actions/checkout@v3.1.0
@@ -106,9 +106,9 @@ jobs:
         run: |
 
           sudo apt-get -y -qq install lftp
-          #if [[ -d /home/runner/.aptly/public/ ]]; then
-          #lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms ${HOME}/output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
-          #fi
+          if [[ -d /home/runner/.aptly/public/ ]]; then
+          lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms ${HOME}/output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
+          fi
 
   stop:
 
