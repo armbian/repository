@@ -17,7 +17,7 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3.1.0
-  
+
       - name: Build list
         id: lists
         run: |
@@ -36,7 +36,7 @@ jobs:
       fail-fast: false
       matrix:
         node: ${{fromJson(needs.start.outputs.matrix)}}
-    
+
     name: "Mirroring"
     runs-on: [Ubuntu-latest]
     steps:
@@ -75,7 +75,7 @@ jobs:
 
       - name: Install keys
         run: |
-        
+
           find keys/ -type f -name "*.gpg" -exec gpg --import --no-default-keyring --keyring trustedkeys.gpg "{}" \;
 
       - name: Download
@@ -113,10 +113,10 @@ jobs:
               # where we are copying from
               SOURCE="/home/runner/.aptly/public/"
               COMPONENT="main"
-              [[ $KEY == "./" ]] && COMPONENT=""
+              [[ $KEY == "./" || $KEY == "stable" ]] && COMPONENT=""
               # generate mirror
               aptly mirror create ${PROJECT}-${RELEASE} ${URL} ${KEY} ${COMPONENT}
-              aptly mirror update ${PROJECT}-${RELEASE} 
+              aptly mirror update ${PROJECT}-${RELEASE}
               aptly snapshot create ${PROJECT}-${RELEASE} from mirror ${PROJECT}-${RELEASE}
               # publish
               aptly publish -architectures="armhf,arm64,amd64,riscv64" -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${PROJECT}-${RELEASE}
