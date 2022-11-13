@@ -31,4 +31,4 @@ numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,jammy,desktop,apt
 numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,kinetic,desktop,aptly,
 numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,bullseye,desktop,aptly,
 numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,sid,desktop,aptly,
-howdy,https://ppa.launchpadcontent.net/boltgolt/howdy/ubuntu,jammy,sid,desktop,aptly,
+howdy,https://ppa.launchpadcontent.net/boltgolt/howdy/ubuntu,jammy,all,desktop,aptly,

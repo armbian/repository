@@ -58,6 +58,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.1.0
 
+      - name: Checkout Armbian build script
+        uses: actions/checkout@v3.1.0
+        with:
+          repository: armbian/build
+          path: build
+          fetch-depth: '100'
+          clean: false
+
       - name: Install Aptly
         run: |
 
@@ -81,32 +89,43 @@ jobs:
           METHOD=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f6)
           GLOB=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f7)
 
+          # read existing releases
+          ALL_RELEASES=($(find build/config/distributions -mindepth 1 -maxdepth 1 -type d | sed 's/.*\///' ))
+
           # recreate folder structure as we are uploading to our system
-          mkdir -p output/debs/$RELEASE
-          mkdir -p output/debs/extra/$RELEASE-utils
-          mkdir -p output/debs/extra/$RELEASE-desktop
+          for i in ${ALL_RELEASES[@]}; do
+              mkdir -p output/debs/${i}
+              mkdir -p output/debs/extra/${i}-utils
+              mkdir -p output/debs/extra/${i}-desktop
+          done
 
+          # we use different download metods (github, aplty)
           if [[ ${METHOD} == gh ]]; then
+              # where we are copying from
+              SOURCE="."
               gh release download -p '*.deb' --repo ${URL}
-              if [[ ${TARGET} == main ]]; then                            
-                   #mv *.deb output/debs/${RELEASE}/
-                   find . -type f -name "*$GLOB*.deb" -exec mv {} output/debs/${RELEASE} \;
-              else
-                   #mv *.deb output/debs/extra/${RELEASE}-${TARGET}/
-                   find . -type f -name "*$GLOB*.deb" -exec mc {} output/debs/extra/${RELEASE}-${TARGET} \;
-              fi
           else
-
+              # where we are copying from
+              SOURCE="/home/runner/.aptly/public/"
               COMPONENT="main"
               [[ $KEY == "./" ]] && COMPONENT=""
-
+              # generate mirror
               aptly mirror create ${PROJECT}-${RELEASE} ${URL} ${KEY} ${COMPONENT}
               aptly mirror update ${PROJECT}-${RELEASE} 
               aptly snapshot create ${PROJECT}-${RELEASE} from mirror ${PROJECT}-${RELEASE}
               # publish
               aptly publish -architectures="armhf,arm64,amd64,riscv64" -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${PROJECT}-${RELEASE}
-              find /home/runner/.aptly/public/ -type f -name "*$GLOB*.deb" -exec mv {} output/debs/extra/${RELEASE}-${TARGET} \;
+          fi
 
+          # copy to location
+          if [[ ${TARGET} == main ]]; then
+              find $SOURCE -type f -name "*$GLOB*.deb" -exec mv {} output/debs/ \;
+          elif [[ ${TARGET} == all ]]; then
+              for i in ${ALL_RELEASES[@]}; do
+                  find $SOURCE -type f -name "*$GLOB*.deb" -exec cp {} output/debs/extra/${i}-${TARGET} \;
+              done
+          else
+              find $SOURCE -type f -name "*$GLOB*.deb" -exec mc {} output/debs/extra/${RELEASE}-${TARGET} \;
           fi
 
       - name: Deploy to server
