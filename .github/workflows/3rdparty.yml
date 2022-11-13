@@ -90,8 +90,7 @@ jobs:
           GLOB=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f7)
 
           # read existing releases
-          ls -l build
-          #ALL_RELEASES=($(find build/config/distributions -mindepth 1 -maxdepth 1 -type d | sed 's/.*\///' ))
+          ALL_RELEASES=($(find build/config/distributions -mindepth 1 -maxdepth 1 -type d | sed 's/.*\///' ))
 
           # recreate folder structure as we are uploading to our system
           for i in ${ALL_RELEASES[@]}; do
@@ -99,6 +98,8 @@ jobs:
               mkdir -p output/debs/extra/${i}-utils
               mkdir -p output/debs/extra/${i}-desktop
           done
+
+          tree output
 
           # we use different download metods (github, aplty)
           if [[ ${METHOD} == gh ]]; then
