@@ -26,3 +26,5 @@ zoom,http://mirror.mwt.me/my/deb,any,kinetic,desktop,aptly,zoom
 sysmoncenter,https://github.com/hakandundar34coding/system-monitoring-center,jammy,jammy,utils,gh,
 sysmoncenter,https://github.com/hakandundar34coding/system-monitoring-center,jammy,kinetic,utils,gh,
 sysmoncenter,https://github.com/hakandundar34coding/system-monitoring-center,jammy,sid,utils,gh,
+numix,ppa:numix/ppa,jammy,jammy,utils,aptly,
+
