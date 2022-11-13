@@ -99,8 +99,6 @@ jobs:
               mkdir -p output/debs/extra/${i}-desktop
           done
 
-          tree output
-
           # we use different download metods (github, aplty)
           if [[ ${METHOD} == gh ]]; then
               # where we are copying from
@@ -131,7 +129,7 @@ jobs:
                   find $SOURCE -type f -name "*$GLOB*.deb" -exec cp {} output/debs/extra/${i}-${TARGET} \;
               done
           else
-              find $SOURCE -type f -name "*$GLOB*.deb" -exec mc {} output/debs/extra/${RELEASE}-${TARGET} \;
+              find $SOURCE -type f -name "*$GLOB*.deb" -exec mv {} output/debs/extra/${RELEASE}-${TARGET} \;
           fi
 
       - name: Deploy to server
