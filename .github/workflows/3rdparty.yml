@@ -73,6 +73,13 @@ jobs:
           sudo dpkg -i aptly_1.5.0_amd64.deb
           sudo rm aptly_1.5.0_amd64.deb
 
+      - name: Install CURL
+        run: |
+
+          wget http://archive.ubuntu.com/ubuntu/pool/main/c/curl/curl_7.81.0-1_amd64.deb
+          sudo dpkg -i curl_7.81.0-1_amd64.deb
+          sudo rm curl_7.81.0-1_amd64.deb
+
       - name: Install keys
         run: |
         
