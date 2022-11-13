@@ -127,6 +127,7 @@ jobs:
           elif [[ ${TARGET} == all ]]; then
               for i in ${ALL_RELEASES[@]}; do
                   find $SOURCE -type f -name "*$GLOB*.deb" -exec cp {} output/debs/extra/${i}-${TARGET} \;
+                  echo "Copy to all output/debs/extra/${i}-${TARGET}"
               done
           else
               find $SOURCE -type f -name "*$GLOB*.deb" -exec mv {} output/debs/extra/${RELEASE}-${TARGET} \;
