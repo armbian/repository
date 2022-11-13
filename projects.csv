@@ -16,6 +16,7 @@ nala,http://deb.volian.org/volian scar,main,jammy,utils,aptly,nala_
 nala,http://deb.volian.org/volian scar,main,kinetic,utils,aptly,nala_
 nala,http://deb.volian.org/volian scar,main,bullseye,utils,aptly,nala_
 aptly,https://github.com/aptly-dev/aptly,focal,all,utils,gh,amd64
+ghcli,https://github.com/cli/cli,jammy,all,utils,gh,
 zoom,http://mirror.mwt.me/my/deb,any,focal,desktop,aptly,zoom
 zoom,http://mirror.mwt.me/my/deb,any,jammy,desktop,aptly,zoom
 zoom,http://mirror.mwt.me/my/deb,any,kinetic,desktop,aptly,zoom
