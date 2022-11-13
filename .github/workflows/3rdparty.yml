@@ -104,6 +104,10 @@ jobs:
               # where we are copying from
               SOURCE="."
               gh release download -p '*.deb' --repo ${URL}
+          elif [[ ${METHOD} == direct ]]; then
+              # where we are copying from
+              SOURCE="."
+              wget -O ${PROJECT}.deb ${URL}
           else
               # where we are copying from
               SOURCE="/home/runner/.aptly/public/"
