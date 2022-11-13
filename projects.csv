@@ -1,4 +1,4 @@
-Project,URL,Component,Release,Repository key,Method,Search parameter
+Project name,URL,Source component,Release,Target location,Method,Search parameter
 box86,http://ryanfortner.github.io/box64-debs/debian,./,all,utils,aptly,
 box64,https://itai-nelken.github.io/weekly-box86-debs/debian/,./,all,utils,aptly,
 zfs,http://ppa.launchpad.net/jonathonf/zfs/ubuntu,focal,focal,utils,aptly,
