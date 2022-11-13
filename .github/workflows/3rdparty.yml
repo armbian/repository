@@ -90,7 +90,8 @@ jobs:
           GLOB=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f7)
 
           # read existing releases
-          ALL_RELEASES=($(find build/config/distributions -mindepth 1 -maxdepth 1 -type d | sed 's/.*\///' ))
+          ls -l build
+          #ALL_RELEASES=($(find build/config/distributions -mindepth 1 -maxdepth 1 -type d | sed 's/.*\///' ))
 
           # recreate folder structure as we are uploading to our system
           for i in ${ALL_RELEASES[@]}; do
