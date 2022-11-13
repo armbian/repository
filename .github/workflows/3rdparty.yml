@@ -102,12 +102,12 @@ jobs:
           # we use different download metods (github, aplty)
           if [[ ${METHOD} == gh ]]; then
               # where we are copying from
-              SOURCE="."
-              gh release download -p '*.deb' --repo ${URL}
+              SOURCE="temp/"
+              gh release download -p '*.deb' --repo ${URL} --dir temp
           elif [[ ${METHOD} == direct ]]; then
               # where we are copying from
-              SOURCE="."
-              wget -O ${PROJECT}.deb ${URL}
+              SOURCE="temp/"
+              wget -O ${PROJECT}.deb ${URL} -P temp
           else
               # where we are copying from
               SOURCE="/home/runner/.aptly/public/"
@@ -120,10 +120,6 @@ jobs:
               # publish
               aptly publish -architectures="armhf,arm64,amd64,riscv64" -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${PROJECT}-${RELEASE}
           fi
-
-          echo "SOR: $SOURCE"
-          echo "SGLOB: $GLOB"
-
 
           # copy to location
           if [[ ${TARGET} == main ]]; then
