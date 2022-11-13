@@ -73,13 +73,6 @@ jobs:
           sudo dpkg -i aptly_1.5.0_amd64.deb
           sudo rm aptly_1.5.0_amd64.deb
 
-      - name: Install CURL
-        run: |
-
-          wget http://archive.ubuntu.com/ubuntu/pool/main/c/curl/curl_7.81.0-1_amd64.deb
-          sudo dpkg -i curl_7.81.0-1_amd64.deb
-          sudo rm curl_7.81.0-1_amd64.deb
-
       - name: Install keys
         run: |
         
@@ -114,7 +107,8 @@ jobs:
           elif [[ ${METHOD} == direct ]]; then
               # where we are copying from
               SOURCE="temp/"
-              curl -o ${PROJECT}.deb -sL --create-dirs -O --output-dir temp ${URL}
+              mkdir -p ${SOURCE}
+              wget -O ${SOURCE}/${PROJECT}.deb ${URL}
           else
               # where we are copying from
               SOURCE="/home/runner/.aptly/public/"
