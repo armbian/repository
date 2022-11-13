@@ -117,6 +117,10 @@ jobs:
               aptly publish -architectures="armhf,arm64,amd64,riscv64" -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${PROJECT}-${RELEASE}
           fi
 
+          echo "SOR: $SOURCE"
+          echo "SGLOB: $GLOB"
+
+
           # copy to location
           if [[ ${TARGET} == main ]]; then
               find $SOURCE -type f -name "*$GLOB*.deb" -exec mv {} output/debs/ \;
