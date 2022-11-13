@@ -22,4 +22,4 @@ nomachine,https://download.nomachine.com/download/8.2/Arm/nomachine_8.2.3_3_armh
 nomachine,https://download.nomachine.com/download/8.2/Linux/nomachine_8.2.3_4_amd64.deb,jammy,all,desktop,direct,
 nomachine,https://download.nomachine.com/download/8.2/Linux/nomachine_8.2.3_4_i386.deb,jammy,all,desktop,direct,
 urbackup,https://ppa.launchpadcontent.net/uroni/urbackup/ubuntu,jammy,jammy,utils,aptly,
-syncthing,https://apt.syncthing.net/ syncthing,stable,all,utils,aptly,
+syncthing,https://apt.syncthing.net/ syncthing stable,stable,all,utils,aptly,
