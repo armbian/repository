@@ -15,20 +15,12 @@ nala,http://deb.volian.org/volian scar,main,focal,utils,aptly,nala_
 nala,http://deb.volian.org/volian scar,main,jammy,utils,aptly,nala_
 nala,http://deb.volian.org/volian scar,main,kinetic,utils,aptly,nala_
 nala,http://deb.volian.org/volian scar,main,bullseye,utils,aptly,nala_
-aptly,https://github.com/aptly-dev/aptly,focal,focal,utils,gh,amd64
-aptly,https://github.com/aptly-dev/aptly,jammy,jammy,utils,gh,amd64
-aptly,https://github.com/aptly-dev/aptly,kinetic,kinetic,utils,gh,amd64
-aptly,https://github.com/aptly-dev/aptly,bullseye,bullseye,utils,gh,amd64
-aptly,https://github.com/aptly-dev/aptly,sid,sid,utils,gh,amd64
+aptly,https://github.com/aptly-dev/aptly,focal,all,utils,gh,amd64
 zoom,http://mirror.mwt.me/my/deb,any,focal,desktop,aptly,zoom
 zoom,http://mirror.mwt.me/my/deb,any,jammy,desktop,aptly,zoom
 zoom,http://mirror.mwt.me/my/deb,any,kinetic,desktop,aptly,zoom
 sysmoncenter,https://github.com/hakandundar34coding/system-monitoring-center,jammy,jammy,utils,gh,
 sysmoncenter,https://github.com/hakandundar34coding/system-monitoring-center,jammy,kinetic,utils,gh,
 sysmoncenter,https://github.com/hakandundar34coding/system-monitoring-center,jammy,sid,utils,gh,
-numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,focal,desktop,aptly,
-numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,jammy,desktop,aptly,
-numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,kinetic,desktop,aptly,
-numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,bullseye,desktop,aptly,
-numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,sid,desktop,aptly,
+numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,all,desktop,aptly,
 howdy,https://ppa.launchpadcontent.net/boltgolt/howdy/ubuntu,jammy,all,desktop,aptly,
