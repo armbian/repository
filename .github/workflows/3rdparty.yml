@@ -107,7 +107,8 @@ jobs:
           elif [[ ${METHOD} == direct ]]; then
               # where we are copying from
               SOURCE="temp/"
-              wget -O ${PROJECT}.deb ${URL} -P temp
+              mkdir -p temp
+              wget -O ${PROJECT}.deb ${URL} -P temp/
           else
               # where we are copying from
               SOURCE="/home/runner/.aptly/public/"
