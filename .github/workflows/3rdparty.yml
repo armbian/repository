@@ -154,6 +154,8 @@ jobs:
     needs: [download]
     outputs:
       userland: ${{steps.tests.outputs.userland}}
+      url: ${{steps.tests.outputs.url}}
+      package: ${{steps.tests.outputs.package}}
     steps:
 
       - name: Checkout
@@ -170,6 +172,8 @@ jobs:
           done < <(tail -n +2 projects.csv)
           )
           echo "userland=$(for x in $(echo "${MATRIX}"); do echo $x; done|jq -cnR '[inputs | select(length>0)]' | jq -c)" >> $GITHUB_OUTPUT
+          echo "url=https://raw.githubusercontent.com/armbian/repository/numix/numix jammy main" >> $GITHUB_OUTPUT
+          echo "package=numix" >> $GITHUB_OUTPUT
 
   testings:
     needs: [download,test]
@@ -181,7 +185,7 @@ jobs:
     name: "Mirroring"
     uses: armbian/scripts/.github/workflows/test-in-docker-images.yml@master
     with:
-      url: "a"
+      url: ${{fromJson(needs.test.outputs.url)}}
       package: b
 
   stop:
