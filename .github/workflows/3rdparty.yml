@@ -133,9 +133,6 @@ jobs:
           else
               find $SOURCE -type f -name "*$GLOB*.deb" -exec mv {} output/debs/extra/${RELEASE}-${TARGET} \;
           fi
-   
-      - name: Runner prepare
-        uses: armbian/actions/runner-prepare@main
 
       - name: Deploy to server
         run: |
@@ -143,9 +140,46 @@ jobs:
           sudo apt-get -y -qq install lftp
           lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
 
+
+  test:
+    runs-on: ubuntu-latest
+    name: "Test"
+    needs: [download]
+    outputs:
+      matrix: ${{steps.lists.outputs.matrix}}
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3.1.0
+
+      - name: Build list
+        id: lists
+        run: |
+
+          MATRIX=$(
+          while IFS="," read -r rec_column1 rec_column2 rec_column3 rec_column4 rec_column5 rec_column6 rec_column7
+          do
+              echo "$rec_column1:$rec_column4"
+          done < <(tail -n +2 projects.csv)
+          )
+          echo "matrix=$(for x in $(echo "${MATRIX}"); do echo $x; done|jq -cnR '[inputs | select(length>0)]' | jq -c)" >> $GITHUB_OUTPUT
+
+  variants:
+    needs: [start]
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ${{fromJson(needs.start.outputs.matrix)}}
+
+    - uses: armbian/scripts/.github/workflows/test-in-docker-images.yml@master
+      with:
+        url: "a"
+        package: b
+
+
   stop:
     name: Stop
-    needs: [start,download]
+    needs: [start,download,variants]
     runs-on: [ubuntu-latest]
     steps:
       - run: |
