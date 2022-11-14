@@ -152,8 +152,8 @@ jobs:
           uses: actions/checkout@v3
         - name: Show
           run: |
-            ls -l 
-            ls -l /etc/apt/
+            pwd
+            cat /etc/apt/sources.list
 
   stop:
 
