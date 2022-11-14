@@ -141,8 +141,14 @@ jobs:
           lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
 
   test:
+    needs: [download]
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        desktop: [xfce,gnome,cinnamon]
+
       name: Compile site assets
-      needs: [download]
       runs-on: ubuntu-latest
       container:
           image: debian:bullseye
