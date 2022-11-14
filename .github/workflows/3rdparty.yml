@@ -142,10 +142,11 @@ jobs:
           #git commit -m "Updating repo" || true
           #git push --force --set-upstream origin ${PROJECT}
 
-          sudo apt-get -y -qq install lftp
-          lftp -u artifacts, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ artifacts/tmp ;bye" sftp://armbian.tnahosting.net
+          #sudo apt-get -y -qq install lftp
+          #lftp -u artifacts, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ artifacts/tmp ;bye" sftp://armbian.tnahosting.net
           #rsync -ar ${SOURCE} artifacts@armbian.tnahosting.net:/artifacts
-          #rsync -ar ${SOURCE} artifacts@armbian.tnahosting.net:/home/artifacts/artifacts/${PROJECT}
+          #rsync -ar ${SOURCE} artifacts@armbian.tnahosting.net:/home/artifacts/artifacts/
+          rsync -e "ssh -o StrictHostKeyChecking=no" -arvc output/debs/ artifacts@armbian.tnahosting.net:/home/artifacts/artifacts/
 
   test:
     runs-on: ubuntu-latest
