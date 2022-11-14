@@ -171,17 +171,10 @@ jobs:
         node: ${{fromJson(needs.start.outputs.userland)}}
 
     name: "Mirroring"
-    runs-on: [Ubuntu-latest]
-    steps:
-
-      - name: Install SSH key for storage
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.KEY_TORRENTS }}
-          known_hosts: ${{ secrets.KNOWN_HOSTS_UPLOAD }}
-          if_key_exists: replace
-
-  
+    uses: armbian/scripts/.github/workflows/test-in-docker-images.yml@master
+    with:
+      url: "a"
+      package: b
 
   stop:
     name: Stop
