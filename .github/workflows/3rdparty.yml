@@ -134,8 +134,10 @@ jobs:
               find $SOURCE -type f -name "*$GLOB*.deb" -exec mv {} output/debs/extra/${RELEASE}-${TARGET} \;
           fi
 
-      - name: Runner prepare
-        uses: armbian/actions/runner-prepare@main
+      - uses: armbian/scripts/.github/workflows/test-in-docker-images.yml@master
+        with:
+          url: "a"
+          package: b
 
       - name: Deploy to server
         run: |
@@ -143,6 +145,7 @@ jobs:
           sudo apt-get -y -qq install lftp
           lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
 
+  stop:
     name: Stop
     needs: [start,download]
     runs-on: [ubuntu-latest]
