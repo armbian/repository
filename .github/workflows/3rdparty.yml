@@ -145,7 +145,7 @@ jobs:
     name: "Test"
     needs: [download]
     outputs:
-      userland: ${{steps.tests.outputs.userland}}
+      matrix: ${{steps.tests.outputs.userland}}
     steps:
 
       - name: Checkout
@@ -168,7 +168,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ${{fromJson(needs.start.outputs.matrix)}}
+        node: ${{fromJson(needs.start.outputs.userland)}}
 
     name: "Mirroring"
     runs-on: [Ubuntu-latest]
