@@ -168,7 +168,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ${{fromJson(needs.start.outputs.userland)}}
+        node: ${{fromJson(needs.test.outputs.userland)}}
 
     name: "Mirroring"
     uses: armbian/scripts/.github/workflows/test-in-docker-images.yml@master
