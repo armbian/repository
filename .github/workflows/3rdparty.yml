@@ -154,6 +154,7 @@ jobs:
           run: |
 
             RELEASE=bullseye
+            apt -y install wget
             wget https://apt.armbian.com/armbian.key -O key
             gpg --dearmor < key | sudo tee /usr/share/keyrings/armbian.gpg > /dev/null
             chmod go+r /usr/share/keyrings/armbian.gpg
