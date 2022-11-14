@@ -140,6 +140,15 @@ jobs:
           sudo apt-get -y -qq install lftp
           lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
 
+      - name: Generate repository
+        run: |
+
+          mkdir -p ${PROJECT}
+          echo "Hello world" > ${PROJECT}/readme.txt
+          git add ${PROJECT}/.
+          git commit -m "Updating repo" || true
+          git push origin repository || true
+
   test:
     runs-on: ubuntu-latest
     name: "Test"
