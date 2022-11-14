@@ -163,7 +163,7 @@ jobs:
           )
           echo "userland=$(for x in $(echo "${MATRIX}"); do echo $x; done|jq -cnR '[inputs | select(length>0)]' | jq -c)" >> $GITHUB_OUTPUT
 
-  xxx:
+  testings:
     needs: [start]
     strategy:
       fail-fast: false
@@ -185,7 +185,7 @@ jobs:
 
   stop:
     name: Stop
-    needs: [start,download,variants]
+    needs: [start,download,testings]
     runs-on: [ubuntu-latest]
     steps:
       - run: |
