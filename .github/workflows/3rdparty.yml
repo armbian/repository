@@ -145,7 +145,7 @@ jobs:
       needs: [download]
       runs-on: ubuntu-latest
       container:
-          image: debian/debian:bullseye
+          image: debian:bullseye
 
       steps:
         - name: Checkout repository
