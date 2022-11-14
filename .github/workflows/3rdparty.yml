@@ -135,10 +135,12 @@ jobs:
           fi
 
           mkdir -p ${PROJECT}
-          echo "Hello world" > ${PROJECT}/readme.txt
+          rsync -av output/debs/ ${PROJECT}/
+          #echo "Hello world" > ${PROJECT}/readme.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
           git checkout -b ${PROJECT}
+          rm -rf ${PROJECT}/*
           git add ${PROJECT}/.
           git commit -m "Updating repo" || true
           git push --set-upstream origin ${PROJECT}          
