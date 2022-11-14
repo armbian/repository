@@ -143,7 +143,7 @@ jobs:
           #git push --force --set-upstream origin ${PROJECT}
 
           sudo apt-get -y -qq install lftp
-          lftp -u artifacts, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms ${SOURCE} artifacts/${PROJECT} ;bye" sftp://armbian.tnahosting.net
+          lftp -u artifacts, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms *.deb artifacts/${PROJECT} ;bye" sftp://armbian.tnahosting.net
           #rsync -ar ${SOURCE} artifacts@armbian.tnahosting.net:/artifacts
           #rsync -ar ${SOURCE} artifacts@armbian.tnahosting.net:/home/artifacts/artifacts/${PROJECT}
 
