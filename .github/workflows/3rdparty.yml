@@ -134,13 +134,13 @@ jobs:
               find $SOURCE -type f -name "*$GLOB*.deb" -exec cp {} output/debs/extra/${RELEASE}-${TARGET} \;
           fi
 
-          git checkout -b ${PROJECT} || git checkout ${PROJECT}
-          rsync -av ${SOURCE} ${PROJECT}/          
-          git config user.name github-actions
-          git config user.email github-actions@github.com          
-          git add ${PROJECT}/.
-          git commit -m "Updating repo" || true
-          git push --force --set-upstream origin ${PROJECT}
+          #git checkout -b ${PROJECT} || git checkout ${PROJECT}
+          #rsync -av ${SOURCE} ${PROJECT}/          
+          #git config user.name github-actions
+          #git config user.email github-actions@github.com          
+          #git add ${PROJECT}/.
+          #git commit -m "Updating repo" || true
+          #git push --force --set-upstream origin ${PROJECT}
 
           sudo apt-get -y -qq install lftp
           lftp -u artifacts, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms ${SOURCE} artifacts/${PROJECT} ;bye" sftp://armbian.tnahosting.net
