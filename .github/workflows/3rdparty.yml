@@ -145,7 +145,7 @@ jobs:
     name: "Test"
     needs: [download]
     outputs:
-      matrix: ${{steps.tests.outputs.userland}}
+      userland: ${{steps.tests.outputs.userland}}
     steps:
 
       - name: Checkout
