@@ -154,7 +154,8 @@ jobs:
 
           mkdir -p build/output/debs
           cp *.deb build/output/debs || true
-          cd build          
+          cd build
+          sudo cp -R $HOME/.gnupg /root/
           ./compile.sh REPOSITORY_UPDATE="update"
 
   test:
