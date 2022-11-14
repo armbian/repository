@@ -138,10 +138,10 @@ jobs:
           echo "Hello world" > ${PROJECT}/readme.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git checkout -b repository
+          git checkout -b ${PROJECT}
           git add ${PROJECT}/.
           git commit -m "Updating repo" || true
-          git push --set-upstream origin repository          
+          git push --set-upstream origin ${PROJECT}          
 
       - name: Deploy to server
         run: |
