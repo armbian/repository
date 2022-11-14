@@ -1,7 +1,9 @@
 Project name,URL,Source component,Release,Target location,Method,Search parameter
-chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,focal,focal,desktop,aptly,
-chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,jammy,jammy,desktop,aptly,
-chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,kinetic,kinetic,desktop,aptly,
+thunderbird,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,jammy,all,desktop,aptly,thunderbird
+firefox,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,jammy,all,desktop,aptly,firefox
+chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,focal,focal,desktop,aptly,chromium
+chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,jammy,jammy,desktop,aptly,chromium
+chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,kinetic,kinetic,desktop,aptly,chromium
 box86,http://ryanfortner.github.io/box64-debs/debian,./,all,utils,aptly,box
 box64,https://itai-nelken.github.io/weekly-box86-debs/debian/,./,all,utils,aptly,box
 zfs,http://ppa.launchpad.net/jonathonf/zfs/ubuntu,focal,focal,utils,aptly,
