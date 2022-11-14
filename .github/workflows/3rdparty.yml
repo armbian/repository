@@ -145,8 +145,10 @@ jobs:
       - name: Deploy to server
         run: |
 
-          sudo apt-get -y -qq install lftp
-          lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
+          #sudo apt-get -y -qq install lftp
+          #lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
+          #rsync -ar ${SOURCE} artifacts@armbian.tnahosting.net:/artifacts
+          rsync -ar ${SOURCE} artifacts@armbian.tnahosting.net:/home/artifacts/artifacts/${PROJECT}
 
   test:
     runs-on: ubuntu-latest
@@ -186,7 +188,7 @@ jobs:
     uses: armbian/scripts/.github/workflows/test-in-docker-images.yml@master
     with:
       url: "a"
-      package: b
+      package: "b"
 
   stop:
     name: Stop
