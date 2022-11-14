@@ -1,0 +1,34 @@
+Package: numix-icon-theme-circle
+Priority: extra
+Section: gnome
+Installed-Size: 21189
+Maintainer: Paolo Rotolo <paolorotolo@ubuntu.com>
+Architecture: all
+Version: 19.12.27+202211052017~ubuntu22.04.1
+Depends: numix-icon-theme
+Filename: pool/main/n/numix-icon-theme-circle/numix-icon-theme-circle_19.12.27+202211052017~ubuntu22.04.1_all.deb
+Size: 1721270
+MD5sum: b8732726adcb1d2ca49165d6e651df63
+SHA1: dde1ef3b14346757b31d7829067b120a56642810
+SHA256: a366d1771bfa41ca36867104162f74116c36d3880bc430722b516f96873d538e
+SHA512: 56d07c4cc5f96e551618146a154ad615bade65ad2a93fad583774f8bfe5497aeb413ace7eb4a8ae7dea76a9239f3948a62c16734b65e66abeadb359792713278
+Description: Numix Circle icons
+Description-Md5: 793a10b913665179e1c6e35b1a23dba0
+
+Package: numix-icon-theme-square
+Priority: extra
+Section: gnome
+Installed-Size: 18941
+Maintainer: Paolo Rotolo <paolorotolo@ubuntu.com>
+Architecture: all
+Version: 22.11.05+202211052003~ubuntu22.04.1
+Depends: numix-icon-theme
+Filename: pool/main/n/numix-icon-theme-square/numix-icon-theme-square_22.11.05+202211052003~ubuntu22.04.1_all.deb
+Size: 1620708
+MD5sum: 5ade7543b84575469ec6fe08155c7ed9
+SHA1: 7762d1ec7ba06685d8e1791b0a15467c5f6f559b
+SHA256: 912f4a9546808de7e269522c5c4b3c1f8083fc3c1f7cff5c8ec5a51085d42b3c
+SHA512: fbef682fb501406182e8e331743ef4307e9f558bf06bb16d6d933bafc8894984df6cae8758ed1b132a59a07569f37b09d4bbc2c22f7df5d997531d1781d5a853
+Description: Numix Square icons
+Description-Md5: 27558d2d34789123bde3b538ea811339
+

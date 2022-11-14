@@ -1,0 +1,6 @@
+Origin: LP-PPA-numix
+Label: . jammy
+Archive: jammy
+Suite: jammy
+Architecture: arm64
+Component: main
