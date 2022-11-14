@@ -1,0 +1,50 @@
+Package: codium
+Priority: optional
+Section: devel
+Installed-Size: 342334
+Maintainer: VSCodium Team https://github.com/VSCodium/vscodium/graphs/contributors
+Architecture: amd64
+Version: 1.73.1.22314
+Replaces: visual-studio-codium
+Provides: visual-studio-codium
+Depends: ca-certificates, libasound2 (>= 1.0.16), libatk-bridge2.0-0 (>= 2.5.3), libatk1.0-0 (>= 2.2.0), libatspi2.0-0 (>= 2.9.90), libc6 (>= 2.14), libc6 (>= 2.15), libc6 (>= 2.17), libc6 (>= 2.4), libc6 (>= 2.8), libcairo2 (>= 1.6.0), libcups2 (>= 1.6.0), libcurl3-gnutls | libcurl3-nss | libcurl4 | libcurl3, libdbus-1-3 (>= 1.5.12), libdrm2 (>= 2.4.38), libexpat1 (>= 2.0.1), libgbm1 (>= 8.1~0), libglib2.0-0 (>= 2.12.0), libglib2.0-0 (>= 2.39.4), libgtk-3-0 (>= 3.9.10), libgtk-3-0 (>= 3.9.10) | libgtk-4-1, libnspr4 (>= 2:4.9-2~), libnss3 (>= 2:3.22), libnss3 (>= 3.26), libpango-1.0-0 (>= 1.14.0), libsecret-1-0 (>= 0.18), libstdc++6 (>= 5), libstdc++6 (>= 5.2), libstdc++6 (>= 6), libx11-6, libx11-6 (>= 2:1.4.99.1), libxcb1 (>= 1.9.2), libxcomposite1 (>= 1:0.4.4-1), libxdamage1 (>= 1:1.1), libxext6, libxfixes3, libxkbcommon0 (>= 0.4.1), libxkbfile1, libxrandr2, xdg-utils (>= 1.0.2)
+Recommends: libvulkan1
+Conflicts: visual-studio-codium
+Filename: pool/main/c/codium/codium_1.73.1.22314_amd64.deb
+Size: 86563132
+MD5sum: 32b203019d52f889aca174686486ea03
+SHA1: c37dece24f0115cbc27dd96b4f3fa45fb775f332
+SHA256: c87826f7e859b49d887005b3bda98ac50e1620f0c3761e2e08c42566ba50e3c1
+SHA512: da54893fe5d4beb35eb4aa2158e9b7f8270347078f44100d098dfa35ea708da923e986f10cd3adc00c85843200ffa2b0877a1f8d1eca3b690dc732f4a7a1018c
+Description: Code editing. Redefined.
+ VSCodium is a new choice of tool that combines the simplicity of
+ a code editor with what developers need for the core edit-build-debug cycle.
+ See https://vscodium.com/docs/setup/linux for installation
+ instructions and FAQ.
+Homepage: https://vscodium.com/
+
+Package: codium-insiders
+Priority: optional
+Section: devel
+Installed-Size: 347523
+Maintainer: VSCodium Team https://github.com/VSCodium/vscodium/graphs/contributors
+Architecture: amd64
+Version: 1.74.0.22316
+Replaces: visual-studio-codium-insiders
+Provides: visual-studio-codium-insiders
+Depends: ca-certificates, libasound2 (>= 1.0.16), libatk-bridge2.0-0 (>= 2.5.3), libatk1.0-0 (>= 2.2.0), libatspi2.0-0 (>= 2.9.90), libc6 (>= 2.14), libc6 (>= 2.15), libc6 (>= 2.17), libc6 (>= 2.4), libc6 (>= 2.8), libcairo2 (>= 1.6.0), libcups2 (>= 1.6.0), libcurl3-gnutls | libcurl3-nss | libcurl4 | libcurl3, libdbus-1-3 (>= 1.5.12), libdrm2 (>= 2.4.38), libexpat1 (>= 2.0.1), libgbm1 (>= 8.1~0), libglib2.0-0 (>= 2.12.0), libglib2.0-0 (>= 2.39.4), libgtk-3-0 (>= 3.9.10), libgtk-3-0 (>= 3.9.10) | libgtk-4-1, libnspr4 (>= 2:4.9-2~), libnss3 (>= 2:3.22), libnss3 (>= 3.26), libpango-1.0-0 (>= 1.14.0), libsecret-1-0 (>= 0.18), libstdc++6 (>= 5), libstdc++6 (>= 5.2), libstdc++6 (>= 6), libx11-6, libx11-6 (>= 2:1.4.99.1), libxcb1 (>= 1.9.2), libxcomposite1 (>= 1:0.4.4-1), libxdamage1 (>= 1:1.1), libxext6, libxfixes3, libxkbcommon0 (>= 0.4.1), libxkbfile1, libxrandr2, xdg-utils (>= 1.0.2)
+Recommends: libvulkan1
+Conflicts: visual-studio-codium-insiders
+Filename: pool/main/c/codium-insiders/codium-insiders_1.74.0.22316_amd64.deb
+Size: 86834292
+MD5sum: e1108227d9fe4795a4f834b1527fd597
+SHA1: 3fea472d35abd298de8ec90dc6b122975858be56
+SHA256: 86325cc23114814196ba47bd03e5ce7aa4186bdfc1ab0bcab943dc8a25943ed7
+SHA512: 2b646e4cdc04559628edfb56ac3e9241327310091bd2b11f7897309164c1fdeb405ebd443d5491394086d6f10ebc131988930dc9c0f39846553eb64721b1b283
+Description: Code editing. Redefined.
+ VSCodium is a new choice of tool that combines the simplicity of
+ a code editor with what developers need for the core edit-build-debug cycle.
+ See https://vscodium.com/docs/setup/linux for installation
+ instructions and FAQ.
+Homepage: https://vscodium.com/
+

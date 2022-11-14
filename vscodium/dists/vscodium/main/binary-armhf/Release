@@ -1,0 +1,6 @@
+Origin: . vscodium
+Label: . vscodium
+Archive: vscodium
+Suite: vscodium
+Architecture: armhf
+Component: main

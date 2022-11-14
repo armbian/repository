@@ -1,0 +1,6 @@
+Origin: . vscodium
+Label: . vscodium
+Archive: vscodium
+Suite: vscodium
+Architecture: arm64
+Component: main
