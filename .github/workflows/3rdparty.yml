@@ -145,20 +145,8 @@ jobs:
           sudo apt-get -y -qq install lftp
           lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
 
-  test:
-
-    needs: [download]
-    - name: "Test"    
-    uses: armbian/scripts/.github/workflows/test-in-docker-images.yml@master
-    with:
-
-      url: "a"
-      package: b
-
-  stop:
-
     name: Stop
-    needs: [start,download,test]
+    needs: [start,download]
     runs-on: [ubuntu-latest]
     steps:
       - run: |
