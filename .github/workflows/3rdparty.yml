@@ -124,23 +124,23 @@ jobs:
           ls -l $SOURCE
           # copy to location
           if [[ ${TARGET} == main ]]; then
-              find $SOURCE -type f -name "*$GLOB*.deb" -exec mv {} output/debs/ \;
+              find $SOURCE -type f -name "*$GLOB*.deb" -exec cp {} output/debs/ \;
           elif [[ ${RELEASE} == all ]]; then
               for i in ${ALL_RELEASES[@]}; do
                   find $SOURCE -type f -name "*$GLOB*.deb" -exec cp {} output/debs/extra/${i}-${TARGET} \;
                   echo "Copy to all output/debs/extra/${i}-${TARGET}"
               done
           else
-              find $SOURCE -type f -name "*$GLOB*.deb" -exec mv {} output/debs/extra/${RELEASE}-${TARGET} \;
+              find $SOURCE -type f -name "*$GLOB*.deb" -exec cp {} output/debs/extra/${RELEASE}-${TARGET} \;
           fi
 
           git checkout -b ${PROJECT} || git checkout ${PROJECT}
-          rsync -av output/debs/ ${PROJECT}/          
+          rsync -av ${SOURCE} ${PROJECT}/          
           git config user.name github-actions
           git config user.email github-actions@github.com          
           git add ${PROJECT}/.
           git commit -m "Updating repo" || true
-          git push --set-upstream origin ${PROJECT}
+          git push --force --set-upstream origin ${PROJECT}
 
       - name: Deploy to server
         run: |
