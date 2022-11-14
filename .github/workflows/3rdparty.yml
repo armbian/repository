@@ -164,7 +164,7 @@ jobs:
           echo "userland=$(for x in $(echo "${MATRIX}"); do echo $x; done|jq -cnR '[inputs | select(length>0)]' | jq -c)" >> $GITHUB_OUTPUT
 
   testings:
-    needs: [download]
+    needs: [download,test]
     strategy:
       fail-fast: false
       matrix:
