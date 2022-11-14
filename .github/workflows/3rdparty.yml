@@ -63,7 +63,7 @@ jobs:
         with:
           repository: armbian/build
           path: build
-          fetch-depth: '100'
+          fetch-depth: '1'
           clean: false
 
       - name: Install Aptly
@@ -104,6 +104,10 @@ jobs:
               # where we are copying from
               SOURCE="temp/"
               gh release download -p '*.deb' --repo ${URL} --dir temp
+
+
+              
+
           elif [[ ${METHOD} == direct ]]; then
               # where we are copying from
               SOURCE="temp/"
@@ -147,6 +151,11 @@ jobs:
           #rsync -ar ${SOURCE} artifacts@armbian.tnahosting.net:/artifacts
           #rsync -ar ${SOURCE} artifacts@armbian.tnahosting.net:/home/artifacts/artifacts/
           rsync -e "ssh -o StrictHostKeyChecking=no" -arvc output/debs/ artifacts@armbian.tnahosting.net:/home/artifacts/artifacts/
+
+          mkdir -p build/output/debs
+          cp *.deb build/output/debs || true
+          cd build          
+          ./compile.sh REPOSITORY_UPDATE="update"
 
   test:
     runs-on: ubuntu-latest
