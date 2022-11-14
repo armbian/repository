@@ -1,3 +1,4 @@
 Project name,URL,Source component,Release,Target location,Method,Search parameter
 ghcli,https://github.com/cli/cli,jammy,all,utils,gh,gh
 numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,all,desktop,aptly,
+vscodium,http://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium,main,all,desktop,aptly,
