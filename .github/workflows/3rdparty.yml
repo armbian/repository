@@ -136,6 +136,8 @@ jobs:
 
           mkdir -p ${PROJECT}
           echo "Hello world" > ${PROJECT}/readme.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add ${PROJECT}/.
           git commit -m "Updating repo" || true
           git push origin repository || true
