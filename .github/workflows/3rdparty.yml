@@ -115,11 +115,11 @@ jobs:
               COMPONENT="main"
               [[ $KEY == "./" || $KEY == "stable" ]] && COMPONENT=""
               # generate mirror
-              aptly mirror -architectures="armhf,arm64,amd64,riscv64" create ${PROJECT}-${RELEASE} ${URL} ${KEY} ${COMPONENT}
+              aptly mirror create ${PROJECT}-${RELEASE} ${URL} ${KEY} ${COMPONENT}
               aptly mirror update ${PROJECT}-${RELEASE}
               aptly snapshot create ${PROJECT}-${RELEASE} from mirror ${PROJECT}-${RELEASE}
               # publish
-              aptly publish -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${PROJECT}-${RELEASE}
+              aptly publish -architectures="armhf,arm64,amd64,riscv64" -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${PROJECT}-${RELEASE}
           fi
           ls -l $SOURCE
           # copy to location
