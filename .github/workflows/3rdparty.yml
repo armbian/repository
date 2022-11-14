@@ -185,7 +185,7 @@ jobs:
     name: "Mirroring"
     uses: armbian/scripts/.github/workflows/test-in-docker-images.yml@master
     with:
-      url: ${{fromJson(needs.test.outputs.url)}}
+      url: "a"
       package: b
 
   stop:
