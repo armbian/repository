@@ -152,11 +152,16 @@ jobs:
           #rsync -ar ${SOURCE} artifacts@armbian.tnahosting.net:/home/artifacts/artifacts/
           rsync -e "ssh -o StrictHostKeyChecking=no" -arvc output/debs/ artifacts@armbian.tnahosting.net:/home/artifacts/artifacts/
 
-          mkdir -p build/output/debs
-          cp *.deb build/output/debs || true
-          cd build
-          sudo cp -R $HOME/.gnupg /root/
-          ./compile.sh REPOSITORY_UPDATE="update"
+          #mkdir -p build/output/debs
+          #cp *.deb build/output/debs || true
+          #cd build
+          #sudo cp -R $HOME/.gnupg /root/
+          #./compile.sh REPOSITORY_UPDATE="update"
+          
+    - name: Deploy to server
+      run: |
+        sudo apt-get -y -qq install lftp
+        lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
 
   test:
     runs-on: ubuntu-latest
