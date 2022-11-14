@@ -141,34 +141,14 @@ jobs:
           lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
 
   test:
+
     needs: [download]
-    strategy:
-      fail-fast: false
-      max-parallel: 8
-      matrix:
-        desktop: [xfce,gnome,cinnamon]
+    name: "Test"    
+    uses: armbian/scripts/.github/workflows/test-in-docker-images.yml@master
+    with:
 
-      name: Compile site assets
-      runs-on: ubuntu-latest
-      container:
-          image: debian:bullseye
-
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v3
-        - name: Show
-          run: |
-
-            RELEASE=bullseye
-            apt update
-            apt -y install wget gpg
-            wget https://apt.armbian.com/armbian.key -O key
-            gpg --dearmor < key | tee /usr/share/keyrings/armbian.gpg > /dev/null
-            chmod go+r /usr/share/keyrings/armbian.gpg
-            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/armbian.gpg] http://apt.armbian.com $RELEASE main ${RELEASE}-utils ${RELEASE}-desktop" | tee /etc/apt/sources.list.d/armbian.list
-            pwd
-            cat /etc/apt/sources.list
-            apt update
+      url: "a"
+      package: b
 
   stop:
 
