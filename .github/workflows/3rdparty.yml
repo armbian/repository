@@ -133,11 +133,9 @@ jobs:
           else
               find $SOURCE -type f -name "*$GLOB*.deb" -exec mv {} output/debs/extra/${RELEASE}-${TARGET} \;
           fi
-
-      - uses: armbian/scripts/.github/workflows/test-in-docker-images.yml@master
-        with:
-          url: "a"
-          package: b
+   
+      - name: Runner prepare
+        uses: armbian/actions/runner-prepare@main
 
       - name: Deploy to server
         run: |
