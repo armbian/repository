@@ -140,10 +140,25 @@ jobs:
           sudo apt-get -y -qq install lftp
           lftp -u upload, -e "set net:timeout 4;set net:max-retries 6;mirror --Remove-source-files -R --no-empty-dirs --parallel=8 --no-perms output/debs/ debs-beta/ ;bye" sftp://users.armbian.com
 
+  test:
+      name: Compile site assets
+      needs: [download]
+      runs-on: ubuntu-latest
+      container:
+          image: debian/debian:bullseye
+
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v3
+        - name: Show
+          run: |
+            ls -l 
+            ls -l /etc/apt/
+
   stop:
 
     name: Stop
-    needs: [start,download]
+    needs: [start,download,test]
     runs-on: [ubuntu-latest]
     steps:
       - run: |
