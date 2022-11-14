@@ -134,16 +134,13 @@ jobs:
               find $SOURCE -type f -name "*$GLOB*.deb" -exec mv {} output/debs/extra/${RELEASE}-${TARGET} \;
           fi
 
-          mkdir -p ${PROJECT}
-          rsync -av output/debs/ ${PROJECT}/
-          #echo "Hello world" > ${PROJECT}/readme.txt
+          git checkout -b ${PROJECT} || git checkout ${PROJECT}
+          rsync -av output/debs/ ${PROJECT}/          
           git config user.name github-actions
-          git config user.email github-actions@github.com
-          git checkout -b ${PROJECT}
-          rm -rf ${PROJECT}/*
+          git config user.email github-actions@github.com          
           git add ${PROJECT}/.
           git commit -m "Updating repo" || true
-          git push --set-upstream origin ${PROJECT}          
+          git push --set-upstream origin ${PROJECT}
 
       - name: Deploy to server
         run: |
