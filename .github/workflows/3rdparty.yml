@@ -163,18 +163,25 @@ jobs:
           )
           echo "userland=$(for x in $(echo "${MATRIX}"); do echo $x; done|jq -cnR '[inputs | select(length>0)]' | jq -c)" >> $GITHUB_OUTPUT
 
-  variants:
-    needs: [test]
+  xxx:
+    needs: [start]
     strategy:
       fail-fast: false
-      userland:
-        node: ${{fromJson(needs.test.outputs.userland)}}
+      matrix:
+        node: ${{fromJson(needs.start.outputs.matrix)}}
 
-    - uses: armbian/scripts/.github/workflows/test-in-docker-images.yml@master
-      with:
-        url: "a"
-        package: b
+    name: "Mirroring"
+    runs-on: [Ubuntu-latest]
+    steps:
 
+      - name: Install SSH key for storage
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.KEY_TORRENTS }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS_UPLOAD }}
+          if_key_exists: replace
+
+  
 
   stop:
     name: Stop
