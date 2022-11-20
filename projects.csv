@@ -2,7 +2,7 @@ Project name,URL,Source component,Release,Target location,Method,Search paramete
 thunderbird,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,jammy,jammy,desktop,aptly,thunderbird
 thunderbird,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,kinetic,kinetic,desktop,aptly,thunderbird
 cinammon,https://ppa.launchpadcontent.net/wasta-linux/cinnamon-tagged/ubuntu,jammy,jammy,desktop,aptly,
-cinammon,https://ppa.launchpadcontent.net/wasta-linux/cinnamon-testing/ubuntu,kinetic,kinetic,desktop,aptly,
+cinammon,https://ppa.launchpadcontent.net/wasta-linux/cinnamon-testing/ubuntu,jammy,kinetic,desktop,aptly,
 firefox,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,jammy,jammy,desktop,aptly,firefox
 firefox,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,kinetic,kinetic,desktop,aptly,firefox
 chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,focal,focal,desktop,aptly,chromium
