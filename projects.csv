@@ -5,6 +5,7 @@ cinammon,https://ppa.launchpadcontent.net/wasta-linux/cinnamon-tagged/ubuntu,jam
 cinammon,https://ppa.launchpadcontent.net/wasta-linux/cinnamon-testing/ubuntu,jammy,kinetic,desktop,aptly,
 firefox,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,jammy,jammy,desktop,aptly,firefox
 firefox,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,kinetic,kinetic,desktop,aptly,firefox
+chrome,http://dl.google.com/linux/chrome/deb/ stable,main,focal,utils,aptly,
 chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,focal,focal,desktop,aptly,chromium
 chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,jammy,jammy,desktop,aptly,chromium
 chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,kinetic,kinetic,desktop,aptly,chromium
