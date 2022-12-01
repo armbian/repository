@@ -18,6 +18,7 @@ nala,http://deb.volian.org/volian scar,main,kinetic,utils,aptly,nala_
 nala,http://deb.volian.org/volian scar,main,bullseye,utils,aptly,nala_
 aptly,https://github.com/aptly-dev/aptly,focal,all,utils,gh,amd64
 ghcli,https://github.com/cli/cli,jammy,all,utils,gh,gh
+etcher,https://github.com/balena-io/etcher,jammy,all,utils,gh,amd64
 zoom,http://mirror.mwt.me/my/deb,any,all,desktop,aptly,zoom
 sysmoncenter,https://github.com/hakandundar34coding/system-monitoring-center,jammy,jammy,utils,gh,
 sysmoncenter,https://github.com/hakandundar34coding/system-monitoring-center,jammy,kinetic,utils,gh,
