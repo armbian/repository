@@ -119,8 +119,8 @@ jobs:
               COMPONENT="main"
               [[ $KEY == "./" || $KEY == "stable" ]] && COMPONENT=""
               # generate mirror
-              aptly mirror create ${PROJECT}-${RELEASE} ${URL} ${KEY} ${COMPONENT}
-              aptly mirror update ${PROJECT}-${RELEASE}
+              aptly -architectures="armhf,arm64,amd64,riscv64" mirror create ${PROJECT}-${RELEASE} ${URL} ${KEY} ${COMPONENT}
+              aptly -max-tries=3 mirror update ${PROJECT}-${RELEASE}
               aptly snapshot create ${PROJECT}-${RELEASE} from mirror ${PROJECT}-${RELEASE}
               # publish
               aptly publish -architectures="armhf,arm64,amd64,riscv64" -batch=true -passphrase=${{ secrets.GPG_PASSPHRASE1 }} snapshot ${PROJECT}-${RELEASE}
