@@ -28,7 +28,7 @@ sysmoncenter,https://github.com/hakandundar34coding/system-monitoring-center,jam
 sysmoncenter,https://github.com/hakandundar34coding/system-monitoring-center,jammy,kinetic,utils,gh,,armhf:arm64:amd64
 sysmoncenter,https://github.com/hakandundar34coding/system-monitoring-center,jammy,lunar,utils,gh,,armhf:arm64:amd64
 sysmoncenter,https://github.com/hakandundar34coding/system-monitoring-center,jammy,sid,utils,gh,,armhf:arm64:amd64
-numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,all,desktop,aptly,,all
+numix,https://ppa.launchpadcontent.net/numix/ppa/ubuntu/,jammy,all,desktop,aptly,,
 howdy,https://ppa.launchpadcontent.net/boltgolt/howdy/ubuntu,jammy,all,desktop,aptly,,armhf:arm64:amd64
 discord,https://discord.com/api/download?platform=linux&format=deb,jammy,all,desktop,direct,,amd64
 urbackup,https://ppa.launchpadcontent.net/uroni/urbackup/ubuntu,jammy,jammy,utils,aptly,,armhf:arm64:amd64
