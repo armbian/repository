@@ -128,6 +128,14 @@ jobs:
           fi
           ls -l $SOURCE
           # copy to location
+
+          find $SOURCE -type f -name "zoom_*" | sort | head -n -1 | xargs sudo rm || true
+          find $SOURCE -type f -name "box64-generic*" | sort | head -n -2 | xargs sudo rm || true
+          find $SOURCE -type f -name "box64-rk3399_*" | sort | head -n -1 | xargs sudo rm || true
+          find $SOURCE -type f -name "box64-tegra_*" | sort | head -n -1 | xargs sudo rm || true
+          find $SOURCE -type f -name "codium-*" | sort | head -n -2 | xargs sudo rm || true
+          find $SOURCE -type f -name "nala_*" | sort | head -n -1 | xargs sudo rm || true
+          
           if [[ ${TARGET} == main ]]; then
               find $SOURCE -type f -name "*$GLOB*.deb" -exec cp {} output/debs/ \;
           elif [[ ${RELEASE} == all ]]; then
@@ -158,15 +166,6 @@ jobs:
           #cd build
           #sudo cp -R $HOME/.gnupg /root/
           #./compile.sh REPOSITORY_UPDATE="update"
-
-      - name: Cleanup
-        run: |
-        
-          find output/debs/. -type f -name "zoom_*" | sort | head -n -1 | xargs sudo rm || true
-          find output/debs/. -type f -name "box64-rk3399_*" | sort | head -n -1 | xargs sudo rm || true
-          find output/debs/. -type f -name "box64-tegra_*" | sort | head -n -1 | xargs sudo rm || true
-          find output/debs/. -type f -name "codium-*" | sort | head -n -2 | xargs sudo rm || true
-          find output/debs/. -type f -name "generic-arm_*" | sort | head -n -2 | xargs sudo rm || true
 
       - name: Deploy to server
         run: |
