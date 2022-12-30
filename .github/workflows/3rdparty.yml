@@ -88,6 +88,7 @@ jobs:
           TARGET=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f5)
           METHOD=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f6)
           GLOB=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f7)
+          ARCH=$(grep "$PROJECT,[^,]\+,[^,]\+,$RELEASE," projects.csv | cut -d"," -f8)
 
           # read existing releases
           ALL_RELEASES=($(find build/config/distributions -mindepth 1 -maxdepth 1 -type d | sed 's/.*\///' ))
@@ -119,7 +120,7 @@ jobs:
               COMPONENT="main"
               [[ $KEY == "./" || $KEY == "stable" ]] && COMPONENT=""
               # generate mirror
-              aptly -architectures="armhf,arm64,amd64,riscv64" -force-architectures mirror create ${PROJECT}-${RELEASE} ${URL} ${KEY} ${COMPONENT}
+              aptly -architectures="$(echo $ARCH | sed "s|:|,|g")" mirror create ${PROJECT}-${RELEASE} ${URL} ${KEY} ${COMPONENT}
               aptly -max-tries=3 mirror update ${PROJECT}-${RELEASE}
               aptly snapshot create ${PROJECT}-${RELEASE} from mirror ${PROJECT}-${RELEASE}
               # publish
