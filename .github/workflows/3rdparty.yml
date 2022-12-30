@@ -119,7 +119,7 @@ jobs:
               COMPONENT="main"
               [[ $KEY == "./" || $KEY == "stable" ]] && COMPONENT=""
               # generate mirror
-              aptly -architectures="armhf,arm64,amd64,riscv64" mirror create ${PROJECT}-${RELEASE} ${URL} ${KEY} ${COMPONENT}
+              aptly -architectures="armhf,arm64,amd64,riscv64" -force-architectures mirror create ${PROJECT}-${RELEASE} ${URL} ${KEY} ${COMPONENT}
               aptly -max-tries=3 mirror update ${PROJECT}-${RELEASE}
               aptly snapshot create ${PROJECT}-${RELEASE} from mirror ${PROJECT}-${RELEASE}
               # publish
