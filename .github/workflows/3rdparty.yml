@@ -175,9 +175,36 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3.2.0
+        with:
+          repository: armbian/repository
+          path: repository
+
+      - name: Install SSH key for storage
+        if: ${{ inputs.uploading == 'true' }}
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.KEY_TORRENTS }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS_UPLOAD }}
+          if_key_exists: replace
+
+      - name: Mount upload folders
+        run: |
+          # use this only on our runners
+          # mount deploy target
+          [[ -z $(command -v sshfs) ]] && sudo apt-get -yy install sshfs
+          sudo mkdir -p /root/.ssh/
+          sudo cp ~/.ssh/known_hosts /root/.ssh/
+          sudo mkdir -p build/output/debs || true
+          sudo mkdir -p build/output/debs-beta || true
+          sudo sshfs upload@users.armbian.com:/debs build/output/debs -o IdentityFile=~/.ssh/id_rsa -o reconnect -o allow_other || true
+          sudo sshfs upload@users.armbian.com:/debs build/output/debs -o IdentityFile=~/.ssh/id_rsa -o reconnect -o nonempty,allow_other || true
+          sudo sshfs upload@users.armbian.com:/debs-beta build/output/debs-beta -o IdentityFile=~/.ssh/id_rsa -o reconnect -o allow_other || true
+          sudo sshfs upload@users.armbian.com:/debs-beta build/output/debs-beta -o IdentityFile=~/.ssh/id_rsa -o reconnect,allow_other -o allow_other || true
 
       - name: Cleanup
         run: |
+        
+          find build/output/debs-beta -type f
         
           # mount and run
           # find . -type f -name "zoom_*" | sort | head -n -1 | xargs sudo rm
@@ -185,6 +212,9 @@ jobs:
           # find . -type f -name "box64-tegra_*" | sort | head -n -1 | xargs sudo rm
           # find . -type f -name "codium-*" | sort | head -n -2 | xargs sudo rm
           # find . -type f -name "generic-arm_*" | sort | head -n -2 | xargs sudo rm
+
+      - name: Runner prepare
+        uses: armbian/actions/runner-prepare@main
 
       - name: Build list
         id: tests
@@ -194,7 +224,7 @@ jobs:
           while IFS="," read -r rec_column1 rec_column2 rec_column3 rec_column4 rec_column5 rec_column6 rec_column7
           do
               echo "$rec_column1:$rec_column4"
-          done < <(tail -n +2 projects.csv)
+          done < <(tail -n +2 repository/projects.csv)
           )
           echo "userland=$(for x in $(echo "${MATRIX}"); do echo $x; done|jq -cnR '[inputs | select(length>0)]' | jq -c)" >> $GITHUB_OUTPUT
           echo "url=https://raw.githubusercontent.com/armbian/repository/numix/numix jammy main" >> $GITHUB_OUTPUT
