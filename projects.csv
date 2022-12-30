@@ -5,7 +5,7 @@ thunderbird,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,lunar,lunar,d
 firefox,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,jammy,jammy,desktop,aptly,firefox,armhf:arm64:amd64
 firefox,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,kinetic,kinetic,desktop,aptly,firefox,armhf:arm64:amd64
 firefox,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,kinetic,lunar,desktop,aptly,firefox,armhf:arm64:amd64
-chrome,http://dl.google.com/linux/chrome/deb/ stable,main,all,utils,aptly,stable,arm64:amd64
+chrome,http://dl.google.com/linux/chrome/deb/ stable,main,all,utils,aptly,stable,amd64
 chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,focal,focal,desktop,aptly,chromium,armhf:arm64:amd64
 chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,jammy,jammy,desktop,aptly,chromium,armhf:arm64:amd64
 chromium,http://ppa.launchpadcontent.net/saiarcot895/chromium-beta/ubuntu,kinetic,kinetic,desktop,aptly,chromium,armhf:arm64:amd64
