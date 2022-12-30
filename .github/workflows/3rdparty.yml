@@ -135,7 +135,7 @@ jobs:
           find $SOURCE -type f -name "box64-tegrax1_*" | sort | head -n -1 | xargs sudo rm || true
           find $SOURCE -type f -name "box64_*" | sort | head -n -1 | xargs sudo rm || true
           find $SOURCE -type f -name "box86_*" | sort | head -n -1 | xargs sudo rm || true
-          find $SOURCE -type f -name "codium_*" | sort | head -n -2 | xargs sudo rm || true
+          find $SOURCE -type f -name "codium_*" | sort | head -n -3 | xargs sudo rm || true
           find $SOURCE -type f -name "firefox-dev*" | xargs sudo rm || true
           find $SOURCE -type f -name "firefox-dbg*" | xargs sudo rm || true
           find $SOURCE -type f -name "nala_*" | sort | head -n -1 | xargs sudo rm || true
