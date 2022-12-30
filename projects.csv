@@ -1,5 +1,5 @@
-Project name,URL,Source component,Release,Target location,Method,Search parameter
-thunderbird,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,jammy,jammy,desktop,aptly,thunderbird
+Project name,URL,Source component,Release,Target location,Method,Search parameter,Arhitectures
+thunderbird,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,jammy,jammy,desktop,aptly,thunderbird,armhf:arm64:amd64
 thunderbird,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,kinetic,kinetic,desktop,aptly,thunderbird
 thunderbird,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,lunar,lunar,desktop,aptly,thunderbird
 firefox,http://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu,jammy,jammy,desktop,aptly,firefox
