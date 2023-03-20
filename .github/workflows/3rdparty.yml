@@ -16,7 +16,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v3.4.0
 
       - name: Build list
         id: lists
@@ -56,10 +56,10 @@ jobs:
           passphrase: ${{ secrets.GPG_PASSPHRASE1 }}
 
       - name: Checkout
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v3.4.0
 
       - name: Checkout Armbian build script
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v3.4.0
         with:
           repository: armbian/build
           path: build
@@ -187,7 +187,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v3.4.0
 
       - name: Build list
         id: tests
